@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckjule5kjuhp"]
+
+[ext_resource type="Script" path="res://script.gd" id="1_5xl8s"]
+[ext_resource type="Texture2D" uid="uid://bcsmygivowoim" path="res://icon.svg" id="2_i0cdf"]
+[ext_resource type="Script" path="res://script2.gd" id="3_b5x4v"]
+[ext_resource type="Script" path="res://script3.gd" id="4_cn73j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyb2r"]
+size = Vector2(83, 31)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 8.0
+offset_top = 252.0
+offset_right = 325.0
+offset_bottom = 345.0
+theme_override_font_sizes/font_size = 30
+text = "show icon"
+script = ExtResource("1_5xl8s")
+metadata/_edit_use_anchors_ = true
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(161, 92)
+texture = ExtResource("2_i0cdf")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 394.0
+offset_top = 60.0
+offset_right = 478.0
+offset_bottom = 115.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Text"
+script = ExtResource("3_b5x4v")
+
+[node name="Area2D" type="Area2D" parent="Label"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Label/Area2D"]
+position = Vector2(41.5, 27.5)
+shape = SubResource("RectangleShape2D_gyb2r")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = 673.0
+offset_top = 162.0
+offset_right = 967.0
+offset_bottom = 226.0
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 733.0
+offset_top = 27.0
+offset_right = 931.0
+offset_bottom = 97.0
+text = "Name"
+horizontal_alignment = 1
+script = ExtResource("4_cn73j")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="mouse_entered" from="Label/Area2D" to="Label" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Label/Area2D" to="Label" method="_on_area_2d_mouse_exited"]
+[connection signal="text_submitted" from="LineEdit" to="Label2" method="_on_line_edit_text_submitted"]
+[connection signal="bro" from="Label2" to="Label2" method="_on_bro"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://qxqypnn5o3fv"]
+
+[ext_resource type="Script" path="res://mainScript.gd" id="1_afkuq"]
+
+[node name="mainScene" type="Node2D"]
+script = ExtResource("1_afkuq")
+var1 = 6
+var2 = 4
+matchVar = 1
