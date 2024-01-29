@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://2ah4plty8gu6"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_kgmpx"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_kgmpx")
+Gold = 100
+
+[node name="inputs" type="VBoxContainer" parent="."]
+offset_left = 524.0
+offset_top = 102.0
+offset_right = 754.0
+offset_bottom = 395.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ButtonAttack" type="Button" parent="inputs"]
+layout_mode = 2
+text = "Attack"
+
+[node name="ButtonHPUPG" type="Button" parent="inputs"]
+layout_mode = 2
+text = "upgrade hp 3 g"
+
+[node name="ButtonDMGUPG" type="Button" parent="inputs"]
+layout_mode = 2
+text = "upgrade sword 4 g"
+
+[node name="ButtonHEAL" type="Button" parent="inputs"]
+layout_mode = 2
+text = "Heal 3 g"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 155.0
+offset_top = 99.0
+offset_right = 370.0
+offset_bottom = 391.0
+
+[node name="playerStats" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="enemyStats" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="inputs/ButtonAttack" to="." method="_on_button_attack_pressed"]
+[connection signal="pressed" from="inputs/ButtonHPUPG" to="." method="_on_button_hpupg_pressed"]
+[connection signal="pressed" from="inputs/ButtonDMGUPG" to="." method="_on_button_dmgupg_pressed"]
+[connection signal="pressed" from="inputs/ButtonHEAL" to="." method="_on_button_heal_pressed"]
