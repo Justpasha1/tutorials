@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://cflm4uvr76sta"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_86jv8"]
+[ext_resource type="Texture2D" uid="uid://c6uodtbjbbxau" path="res://icon.svg" id="2_7sunw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lpn0a"]
+size = Vector2(96, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvtcx"]
+size = Vector2(1312, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fddyy"]
+size = Vector2(216, 136)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2oox"]
+size = Vector2(74, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjsgu"]
+size = Vector2(173, 32)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_86jv8")
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+texture_filter = 1
+scale = Vector2(0.75, 1)
+texture = ExtResource("2_7sunw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+shape = SubResource("RectangleShape2D_lpn0a")
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+
+[node name="Label" type="Label" parent="player/Camera2D"]
+offset_left = -576.0
+offset_top = -320.0
+offset_right = -448.0
+offset_bottom = -297.0
+
+[node name="Timer" type="Timer" parent="player"]
+wait_time = 5.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-40, 624)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(592, 0)
+shape = SubResource("RectangleShape2D_dvtcx")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(592, 0)
+scale = Vector2(10.25, 1)
+texture = ExtResource("2_7sunw")
+
+[node name="StaticBody2D2" type="RigidBody2D" parent="."]
+position = Vector2(-40, 624)
+mass = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(1088, -136)
+shape = SubResource("RectangleShape2D_fddyy")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+position = Vector2(1088, -136)
+scale = Vector2(1.6875, 1.0625)
+texture = ExtResource("2_7sunw")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." groups=["upgrade"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+position = Vector2(651, 101)
+scale = Vector2(0.546875, 0.578125)
+texture = ExtResource("2_7sunw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(651, 101)
+shape = SubResource("RectangleShape2D_m2oox")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(353.5, 544)
+shape = SubResource("RectangleShape2D_pjsgu")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4"]
+position = Vector2(352, 544)
+scale = Vector2(1.375, 0.25)
+texture = ExtResource("2_7sunw")
+
+[connection signal="timeout" from="player/Timer" to="player" method="_on_timer_timeout"]
