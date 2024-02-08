@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvpqjjtj1rnj2"]
+
+[ext_resource type="Texture2D" uid="uid://7ivgpugihbbv" path="res://icon.svg" id="1_3766l"]
+[ext_resource type="Texture2D" uid="uid://cpw307j5gcd40" path="res://hamster.png" id="2_aelmp"]
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="2_wj284"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwxfa"]
+size = Vector2(1708.5, 124)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2ysm"]
+size = Vector2(213, 183)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3hb4l"]
+size = Vector2(123, 67.9047)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqhvq"]
+size = Vector2(244, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_geega"]
+size = Vector2(124, 128)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(807.75, 597)
+shape = SubResource("RectangleShape2D_wwxfa")
+
+[node name="Icon2" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(808, 600)
+scale = Vector2(13.3438, 1)
+texture = ExtResource("1_3766l")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(1059, 81)
+script = ExtResource("2_wj284")
+metadata/_edit_group_ = true
+
+[node name="Hamster" type="Sprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+scale = Vector2(3.08, 2.74)
+texture = ExtResource("2_aelmp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(22, 0)
+shape = SubResource("RectangleShape2D_k2ysm")
+
+[node name="Timer" type="Timer" parent="CharacterBody2D"]
+wait_time = 5.0
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+
+[node name="Label" type="Label" parent="CharacterBody2D/Camera2D"]
+offset_left = -125.0
+offset_top = -125.0
+offset_right = 165.0
+offset_bottom = -102.0
+horizontal_alignment = 1
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." groups=["spikes"]]
+
+[node name="Icon3" type="Sprite2D" parent="StaticBody2D2"]
+position = Vector2(445, 529)
+scale = Vector2(1, 0.328125)
+texture = ExtResource("1_3766l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(443.5, 521.141)
+scale = Vector2(1, 0.328125)
+shape = SubResource("RectangleShape2D_3hb4l")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(1060, 479)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(1.89844, 0.898438)
+texture = ExtResource("1_3766l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_tqhvq")
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." groups=["upgrade"]]
+position = Vector2(585, -132)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+texture = ExtResource("1_3766l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("RectangleShape2D_geega")
+
+[connection signal="timeout" from="CharacterBody2D/Timer" to="CharacterBody2D" method="_on_timer_timeout"]
